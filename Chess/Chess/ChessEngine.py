@@ -208,7 +208,7 @@ class GameState():
                 if r == 1 and self.board[r+2][c] == "--":
                     moves.append(Move((r, c), (r+2, c), self.board))
 
-            if c-1 >= 2 and self.board[r+1][c-1][0] == 'w':
+            if c-1 >= 0 and self.board[r+1][c-1][0] == 'w':
                 if not piecePinned or pinDirection == (1, -1):
                     moves.append(Move((r, c), (r+1, c-1), self.board))
             if c+1 < 8 and self.board[r+1][c+1][0] == 'w':
