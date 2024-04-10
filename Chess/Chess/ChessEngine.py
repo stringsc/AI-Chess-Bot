@@ -146,7 +146,7 @@ class GameState():
     def getValidMoves(self):
         for log in self.castleRightsLog:
             print(log.wks, log.wqs, log.bks, log.bqs)
-            
+
         moves = []
         self.inCheck, self.pins, self.checks = self.checkForPinsAndChecks()
         if self.whiteToMove:
@@ -155,6 +155,7 @@ class GameState():
         else:
             kingRow = self.blackKingLocation[0]
             kingCol = self.blackKingLocation[1]
+
         if self.inCheck: # if in check, we must move the king
             if len(self.checks) == 1:
                 moves = self.getAllPossibleMoves() 
@@ -367,7 +368,7 @@ class GameState():
         if (self.whiteToMove and self.currentCastlingRight.wks) or (not self.whiteToMove and self.currentCastlingRight.bks):
             self.getKingCastleMoves(r, c, moves)
         if (self.whiteToMove and self.currentCastlingRight.wqs) or (not self.whiteToMove and self.currentCastlingRight.bqs):
-            self.getQueenCastleMoves(r, c, moves)
+            self.getQueenSideCastleMoves(r, c, moves)
 
     def getKingCastleMoves(self, r, c, moves):
         if self.board[r][c+1] == '--' and self.board[r][c+2] == '--':
