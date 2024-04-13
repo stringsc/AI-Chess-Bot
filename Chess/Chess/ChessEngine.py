@@ -27,7 +27,6 @@ class GameState():
         self.blackKingLocation = (0, 4)
         self.checkMate = False
         self.staleMate = False
-        self.inCheck = False
         self.pins = []
         self.checks = []
         self.enPassantPossible = () # square for the square where enpassant capture is possible
@@ -146,8 +145,8 @@ class GameState():
 
     # All moves considering checks
     def getValidMoves(self):
-        for log in self.castleRightsLog:
-            print(log.wks, log.wqs, log.bks, log.bqs)
+        # for log in self.castleRightsLog:
+        #     print(log.wks, log.wqs, log.bks, log.bqs)
 
         moves = []
         self.inCheck, self.pins, self.checks = self.checkForPinsAndChecks()
@@ -449,7 +448,6 @@ class GameState():
         return inCheck, pins, checks
     
     def updateCheckMateAndStaleMate(self):
-        self.inCheck = self.checkForPinsAndChecks()
         self.checkMate = False
         self.staleMate = False
         moves = self.getAllPossibleMoves()
@@ -458,6 +456,8 @@ class GameState():
                 self.checkMate = True
             else:
                 self.staleMate = True
+        else:
+            self.staleMate = False
     
 class CastleRights():
     def __init__(self, wks, bks, wqs, bqs):
