@@ -75,6 +75,8 @@ class GameState():
             else: # queen side castle
                 self.board[move.endRow][move.endCol + 1] = self.board[move.endRow][move.endCol - 2]
                 self.board[move.endRow][move.endCol - 2] = '--'
+        
+        self.updateCheckMateAndStaleMate()
 
         
 
@@ -292,14 +294,14 @@ class GameState():
                 break
 
         directions = ((-2, -1), (-2, 1), (-1, -2), (-1, 2), (1, -2), (1, 2), (2, -1), (2, 1))
-        enemyColor = 'b' if self.whiteToMove else 'w'
+        allyColor = 'w' if self.whiteToMove else 'b'
         for d in directions:
             endRow = r + d[0]
             endCol = c + d[1]
             if 0 <= endRow < 8 and 0 <= endCol < 8:
                 if not piecePinned:
                     endPiece = self.board[endRow][endCol]
-                    if endPiece[0] != enemyColor: # not an ally piece
+                    if endPiece[0] != allyColor: # not an ally piece
                         moves.append(Move((r, c), (endRow, endCol), self.board))
 
                 
@@ -445,6 +447,17 @@ class GameState():
                     inCheck = True
                     checks.append((endRow, endCol, m[0], m[1]))
         return inCheck, pins, checks
+    
+    def updateCheckMateAndStaleMate(self):
+        self.inCheck = self.checkForPinsAndChecks()
+        self.checkMate = False
+        self.staleMate = False
+        moves = self.getAllPossibleMoves()
+        if len(moves) == 0:  # no moves available
+            if self.inCheck:
+                self.checkMate = True
+            else:
+                self.staleMate = True
     
 class CastleRights():
     def __init__(self, wks, bks, wqs, bqs):
