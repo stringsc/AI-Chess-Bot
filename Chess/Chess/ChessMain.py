@@ -278,7 +278,7 @@ def animateMove(move, screen, board, clock):
         # draw moving piece
         screen.blit(IMAGES[move.piece_moved], p.Rect(col * SQUARE_SIZE, row * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
         p.display.flip()
-        clock.tick(60)
+        clock.tick(120)
 
 
 if __name__ == "__main__":
