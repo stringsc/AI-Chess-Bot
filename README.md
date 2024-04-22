@@ -12,15 +12,18 @@ Technologies Used
 - **Programming Language:** Python
 - **Algorithm:** Minimax with Alpha-Beta Pruning for efficient move evaluation
 
-Setup and Running
-The repository includes detailed instructions for setting up the Python environment, installing dependencies, and running the chess bot to start playing. Users can interact with the bot through the CLI, making it accessible to both beginners and experienced chess players.
-
 ## Learning Outcomes
 - Implementation of complex algorithms in a real-world application
 - Development of efficient data structures to manage game state
 - Enhancement of problem-solving and strategic thinking skills through algorithm optimization
 
 ## How to Run
-Instructions are provided for users to easily run the bot from their local machines, including steps to initiate a game, make moves, and receive feedback from the AI regarding its chosen moves.
+1. Clone this repository.
+2. Select whether you want to play versus Ai, against another player locally, or watch the game of engine playing against itself by setting appropriate flags in lines 52 and 53 of ChessMain.py.
+3. Run ChessMain.py.
+
+Also
+-Press z to undo a move.
+-Press r to reset the game.
 
 
